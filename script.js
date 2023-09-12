@@ -56,6 +56,7 @@ class SwiperMenu
                     .filter(element => ['span', 'a'].includes(element.nodeName.toLowerCase()))
                     .shift()
                     .textContent;
+                trigger.parentElement.classList.add('selected');
                 this.#backElementText.textContent = title;
             })
 
@@ -75,9 +76,10 @@ class SwiperMenu
                 this.#backElement.classList.remove('show');
             }
             const lastElement = listElements.pop();
-            console.log(lastElement)
             this.#backElementText.textContent = lastElement.previousElementSibling.textContent;
             lastElement.classList.remove('open');
+
+            Array.from(this.#element.querySelectorAll('.selected')).pop().classList.remove('selected')
         })
     }
 
